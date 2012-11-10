@@ -1,3 +1,4 @@
+
 *~
 tmp
 tmp/**/*
@@ -5,3 +6,6 @@ tmp/*
 log/*
 tmp/cache/assets/*
 log/development.log
+tmp/*
+log/*
+tmp/
