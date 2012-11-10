@@ -4,3 +4,4 @@ tmp/**/*
 tmp/*
 log/*
 tmp/cache/assets/*
+log/development.log
