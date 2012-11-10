@@ -7,7 +7,13 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
+<<<<<<< HEAD
 gem 'rb-readline'
+=======
+gem "sass", "~> 3.2.3"
+gem "haml", "~> 3.1.7"
+gem 'thin'
+>>>>>>> eb16d753ce1c11f4239e14a6de9ce36cae81307e
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
