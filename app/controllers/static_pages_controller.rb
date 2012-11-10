@@ -4,6 +4,8 @@ class StaticPagesController < ApplicationController
       @micropost = current_user.microposts.build
       @feed_items = current_user.feed.paginate(page: params[:page])
     end
+
+    @microposts = Micropost.find_by_sql("SELECT * FROM microposts ORDER BY updated_at DESC")
   end
 
   def help

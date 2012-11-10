@@ -28,5 +28,9 @@
     <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
   </div>
 
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+  
+  <h3>Posts</h3>
+  <ol class="microposts">
+  <%= render partial: 'shared/micropost', collection: @microposts %>
+  </ol>
 <% end %>
