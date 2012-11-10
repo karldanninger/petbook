@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 tmp/*
 db/*
-=======
-
 *~
 tmp
 tmp/**/*
@@ -13,4 +10,3 @@ log/development.log
 tmp/*
 log/*
 tmp/
->>>>>>> 0dc354550dce258ca60b1091633027265f878ebf
