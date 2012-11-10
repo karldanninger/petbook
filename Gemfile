@@ -9,6 +9,7 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem "sass", "~> 3.2.3"
 gem "haml", "~> 3.1.7"
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
