@@ -1,11 +1,17 @@
-<div class="cat">
-</div>
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "sample app", root_path, id: "logo" %>
+      <%= link_to "Petbook", root_path, id: "logo" %>
+      <div class ="what">
+      . . . a social network for your pet
+      </div>
       <nav>
         <ul class="nav pull-right">
+          <li>
+          <div class ="facebook">
+            Sign in with Facebook
+          </div>
+          </li>
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "Help",    help_path %></li>
           <% if signed_in? %>

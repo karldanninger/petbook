@@ -17,16 +17,22 @@
     </div>
   </div>
 <% else %>
-  <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
+  <div class="center welcome">
+    <h1>Meet New Furry Friends. Learn. Explore.</h1>
     <p>
-      This is the home page for the 
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
+      Create a profile for your pet and share your experiences with the world!
     </p>
-
-    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <hr />
+    
+      <div class="placeholder-profile" />
+      <div class="pull-right">
+        <h2>Get Started!</h2>
+        <div class="arrow" />
+        <!-- <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %> -->
+      </div
+    
   </div>
+<<<<<<< HEAD
 
   
   <h3>Posts</h3>
@@ -34,3 +40,11 @@
   <%= render partial: 'shared/micropost', collection: @microposts %>
   </ol>
 <% end %>
+=======
+  <div class="clear">
+  </div>
+  <div class="stream">
+  </div>
+  
+<% end %>
+>>>>>>> 0dc354550dce258ca60b1091633027265f878ebf
