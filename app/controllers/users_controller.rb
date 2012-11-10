@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost = current_user.microposts.build
+    @is_current = (current_user.id == params[:id].to_i)
   end
 
   def new
