@@ -1,0 +1,287 @@
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-10 11:58:56 -0500
+Processing by StaticPagesController#home as HTML
+Completed 500 Internal Server Error in 30ms
+
+ActiveRecord::StatementInvalid (Could not find table 'users'):
+  app/helpers/sessions_helper.rb:17:in `current_user'
+  app/helpers/sessions_helper.rb:9:in `signed_in?'
+  app/controllers/static_pages_controller.rb:3:in `home'
+
+
+  Rendered /Users/karl/.rvm/gems/ruby-1.9.3-p194-perf@petbookk/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.3ms)
+  Rendered /Users/karl/.rvm/gems/ruby-1.9.3-p194-perf@petbookk/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /Users/karl/.rvm/gems/ruby-1.9.3-p194-perf@petbookk/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.4ms)
+  [1m[36m (58.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (4.8ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (2.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120507002709)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120507002709')
+  [1m[36m (3.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20120508002644)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120508002644')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+Migrating to AddPasswordDigestToUsers (20120508004837)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "password_digest" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120508004837')[0m
+  [1m[35m (2.7ms)[0m  commit transaction
+Migrating to AddRememberTokenToUsers (20120514201046)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "remember_token" varchar(255)
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_users_on_email')
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120514201046')
+  [1m[36m (2.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUsers (20120517030607)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "admin" boolean DEFAULT 'f'[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120517030607')
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMicroposts (20120519194108)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "microposts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("microposts")
+  [1m[36m (0.1ms)[0m  [1mCREATE INDEX "index_microposts_on_user_id_and_created_at" ON "microposts" ("user_id", "created_at")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120519194108')
+  [1m[36m (3.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRelationships (20120520230206)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "relationships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("relationships")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_relationships_on_follower_id" ON "relationships" ("follower_id")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("relationships")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_relationships_on_follower_id')[0m
+  [1m[35m (0.1ms)[0m  CREATE INDEX "index_relationships_on_followed_id" ON "relationships" ("followed_id")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("relationships")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_relationships_on_followed_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_relationships_on_follower_id')[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_relationships_on_follower_id_and_followed_id" ON "relationships" ("follower_id", "followed_id")
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120520230206')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+  [1m[36m (0.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("microposts")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_microposts_on_user_id_and_created_at')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("relationships")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_relationships_on_follower_id_and_followed_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_relationships_on_followed_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_relationships_on_follower_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_users_on_remember_token')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_users_on_email')[0m
+
+
+Started GET "/" for 127.0.0.1 at 2012-11-10 11:59:42 -0500
+Processing by StaticPagesController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1
+  Rendered static_pages/home.html.erb within layouts/application (1.8ms)
+Compiled custom.css  (1518ms)  (pid 27591)
+Compiled sessions.css  (1ms)  (pid 27591)
+Compiled static_pages.css  (1ms)  (pid 27591)
+Compiled users.css  (1ms)  (pid 27591)
+Compiled application.css  (1551ms)  (pid 27591)
+Compiled jquery.js  (3ms)  (pid 27591)
+Compiled jquery_ujs.js  (35ms)  (pid 27591)
+Compiled bootstrap-transition.js  (0ms)  (pid 27591)
+Compiled bootstrap-alert.js  (0ms)  (pid 27591)
+Compiled bootstrap-button.js  (0ms)  (pid 27591)
+Compiled bootstrap-carousel.js  (0ms)  (pid 27591)
+Compiled bootstrap-collapse.js  (0ms)  (pid 27591)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 27591)
+Compiled bootstrap-modal.js  (0ms)  (pid 27591)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 27591)
+Compiled bootstrap-tab.js  (0ms)  (pid 27591)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 27591)
+Compiled bootstrap-popover.js  (0ms)  (pid 27591)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 27591)
+Compiled bootstrap.js  (164ms)  (pid 27591)
+Compiled sessions.js  (377ms)  (pid 27591)
+Compiled static_pages.js  (122ms)  (pid 27591)
+Compiled users.js  (118ms)  (pid 27591)
+Compiled application.js  (916ms)  (pid 27591)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (3.2ms)
+  Rendered layouts/_footer.html.erb (0.8ms)
+Completed 200 OK in 2644ms (Views: 2614.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /application.css - 200 OK (25ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /jquery.js - 200 OK (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /users.css - 200 OK (2ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /custom.css - 200 OK (5ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /static_pages.css - 200 OK (1ms)
+
+
+Started GET "/assets/sessions.css?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /sessions.css - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /jquery_ujs.js - 200 OK (5ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-transition.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-alert.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-carousel.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-button.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-collapse.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-dropdown.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-modal.js - 200 OK (5ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-scrollspy.js - 200 OK (4ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-tooltip.js - 200 OK (3ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-popover.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-tab.js - 200 OK (5ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap-typeahead.js - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /bootstrap.js - 200 OK (13ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /sessions.js - 200 OK (1ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /static_pages.js - 200 OK (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /users.js - 200 OK (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-11-10 11:59:45 -0500
+Served asset /application.js - 200 OK (16ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-11-10 11:59:46 -0500
+Served asset /rails.png - 200 OK (6ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2012-11-10 11:59:51 -0500
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/new.html.erb within layouts/application (148.8ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" IS NULL LIMIT 1
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 174ms (Views: 164.8ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2012-11-10 12:00:02 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"57iHlnb0WRSYeZo9CwCIv+A5noLoGPyg0LVFwWICP2I=", "user"=>{"name"=>"Admin", "email"=>"admin@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('admin@example.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "users" ("admin", "created_at", "email", "name", "password_digest", "remember_token", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["admin", false], ["created_at", Sat, 10 Nov 2012 17:00:02 UTC +00:00], ["email", "admin@example.com"], ["name", "Admin"], ["password_digest", "$2a$10$XqyRwqR4QnUIeUOMGe1w2.Lag7nqZAiwxCWMjJjR1lidrVSSY0ete"], ["remember_token", "_tXArrO5O6a-jzLIp5oD6g"], ["updated_at", Sat, 10 Nov 2012 17:00:02 UTC +00:00]]
+  [1m[35m (5.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 144ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2012-11-10 12:00:02 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 1[0m
+  Rendered shared/_stats.html.erb (16.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = '_tXArrO5O6a-jzLIp5oD6g' LIMIT 1
+  Rendered users/_follow_form.html.erb (0.7ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = 1[0m
+  Rendered users/show.html.erb within layouts/application (22.2ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 90ms (Views: 35.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2012-11-10 12:00:09 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."follower_id" WHERE "relationships"."followed_id" = 1
+  Rendered shared/_stats.html.erb (2.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '_tXArrO5O6a-jzLIp5oD6g' LIMIT 1[0m
+  Rendered users/_follow_form.html.erb (0.1ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "microposts" WHERE "microposts"."user_id" = 1
+  Rendered users/show.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 24ms (Views: 21.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2012-11-10 12:00:12 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = '_tXArrO5O6a-jzLIp5oD6g' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" LIMIT 30 OFFSET 0[0m
+  Rendered users/_user.html.erb (2.0ms)
+  Rendered users/index.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 58ms (Views: 56.5ms | ActiveRecord: 0.5ms)
