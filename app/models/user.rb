@@ -11,13 +11,10 @@ attr_accessor :photo_file_name
     :large => "600x400"
   },
   :storage => :s3,
-  :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml",
-  :path => ":url",
-  :url => "/photo/:id/:style.:extension",
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
+  :default_url => "kitty.jpeg",
   :bucket => 'petbook-assets'
 
-
-  
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
