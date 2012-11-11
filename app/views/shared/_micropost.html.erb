@@ -1,8 +1,8 @@
 <li>
   <%= image_tag micropost.user.photo.url %>
   <span class="name"><%= micropost.user.name %></span>
-  <span class="content"><%= micropost.content %></span>
-  <span class="timestamp">
+  <span class="content" style="color:white"><%= micropost.content %></span>
+  <span class="timestamp" style="color:#4ADEFF;">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
   <% if current_user?(micropost.user) %>
