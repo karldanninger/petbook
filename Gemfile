@@ -11,6 +11,10 @@ gem 'rb-readline'
 gem "sass", "~> 3.2.3"
 gem "haml", "~> 3.1.7"
 gem 'thin'
+gem 'aws-s3'
+gem 'aws-sdk'
+gem 'paperclip'
+#gem 'rmagick'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'

@@ -10,6 +10,9 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
+	  
+	  <%= f.label :email %>
+      <%= f.file_field :photo %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -19,5 +22,6 @@
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
+
   </div>
 </div>
