@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :photo, :password, :password_confirmation, :pettype, :breed, :birthday
+attr_accessor :photo_file_name
   has_secure_password
   
   belongs_to :page
@@ -10,7 +11,7 @@ class User < ActiveRecord::Base
     :large => "600x400"
   },
   :storage => :s3,
-  :s3_credentials => "../../config/s3.yml",
+  :s3_credentials => "config/s3.yml",
   :path => ":attachment/:id/:style.:extension",
   :bucket => 'petbook-assets'
 
