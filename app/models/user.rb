@@ -6,9 +6,9 @@ attr_accessor :photo_file_name
   belongs_to :page
   has_attached_file :photo,
   :styles =>{
-    :thumb  => "50x50#",
-    :medium => "200x200#",
-    :large => "600x400#"
+    :thumb  => "100x100",
+    :medium => "200x200",
+    :large => "600x400"
   },
   :storage => :s3,
   :s3_credentials => "config/s3.yml",
