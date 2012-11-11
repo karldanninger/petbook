@@ -10,3 +10,4 @@ log/development.log
 tmp/*
 log/*
 tmp/
+db/development.sqlite3
