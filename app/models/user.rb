@@ -1,6 +1,21 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :pettype, :breed, :birthday
+  attr_accessible :name, :email, :photo, :password, :password_confirmation, :pettype, :breed, :birthday
   has_secure_password
+  
+  belongs_to :page
+  has_attached_file :photo,
+  :styles =>{
+    :thumb  => "100x100",
+    :medium => "200x200",
+    :large => "600x400"
+  },
+  :storage => :s3,
+  :s3_credentials => "../../config/s3.yml",
+  :path => ":attachment/:id/:style.:extension",
+  :bucket => 'petbook-assets'
+
+
+  
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
