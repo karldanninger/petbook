@@ -15,7 +15,6 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'aws-s3'
 gem 'aws-sdk'
 gem 'paperclip'
-gem 'rmagick'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -45,4 +44,5 @@ end
 
 group :production do
   gem 'pg', '0.12.2'
+ #gem 'rmagick'
 end

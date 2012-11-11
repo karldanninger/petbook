@@ -17,6 +17,13 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  
+  match '/step1', to: 'static_pages#step1'
+  match '/step2', to: 'static_pages#step2'
+  match '/step3', to: 'static_pages#step3'
+  match '/step4', to: 'static_pages#step4'
+  match '/step5', to: 'static_pages#step5'
+  match '/step6', to: 'static_pages#step6'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

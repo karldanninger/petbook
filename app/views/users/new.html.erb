@@ -9,13 +9,15 @@
         <%= f.label :name %>
         <%= f.text_field :name %>
 
-      <%= f.label :pettype %>
+      <%= f.label "Pet Type" %>
       <%= f.select :pettype, [['Cat', 'Cat'], ['Dog', 'Dog'], ['Bird', 'Bird'], ['Hamster', 'Hamster']] %>
 
       <%= f.label :breed %>
       <%= f.text_field :breed %>
 
       <%= f.label :birthday %>
+      
+      <%# Fucking PHP programmers, messing up our sexy Ruby code ;) %>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
@@ -29,7 +31,7 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 	  
-	  <%= f.label :email %>
+	  <%= f.label :photo %>
       <%= f.file_field :photo %>
 
         <%= f.label :password %>
