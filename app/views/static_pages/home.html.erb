@@ -27,23 +27,16 @@
     <hr />
     
       <div class="placeholder-profile" />
-      <div class="pull-right">
-        <h2>Get Started!</h2>
-        <!-- div class="arrow" /-->
-        <%= link_to "Sign up", signup_path, class: "signup" %>
-        <!--div class="facebook-signup" /-->
+      <div class="pull-right" style="width:40%">
+	  <h3>RECENT ACTIVITY</h3>
+	  <ol class="microposts">
+	  <%= render partial: 'shared/micropost', collection: @microposts %>
+	  </ol>
       </div
     
   </div>
 
   <div class="clear">
-  </div>
-  <div class="stream">
-  <div class="share">Anything you want to share?</div>
-  <h3>RECENT ACTIVITY</h3>
-  <ol class="microposts">
-  <%= render partial: 'shared/micropost', collection: @microposts %>
-  </ol>
   </div>
   
 <% end %>

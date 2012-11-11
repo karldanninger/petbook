@@ -11,8 +11,9 @@ attr_accessor :photo_file_name
     :large => "600x400"
   },
   :storage => :s3,
-  :s3_credentials => "config/s3.yml",
-  :path => ":attachment/:id/:style.:extension",
+  :s3_credentials => "#{::Rails.root.to_s}/config/s3.yml",
+  :path => ":url",
+  :url => "/photo/:id/:style.:extension",
   :bucket => 'petbook-assets'
 
 
