@@ -1,19 +1,21 @@
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
-      <section>
-        <%= render 'shared/micropost_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-      <h3>Micropost Feed</h3>
-      <%= render 'shared/feed' %>
+  <div class="lolsauce">
+    <div class="row">
+      <aside class="span4">
+        <section>
+          <%= render 'shared/user_info' %>
+        </section>
+        <section>
+          <%= render 'shared/stats' %>
+        </section>
+        <section>
+          <%= render 'shared/micropost_form' %>
+        </section>
+      </aside>
+      <div class="span7">
+        <h3>Micropost Feed</h3>
+        <%= render 'shared/feed' %>
+      </div>
     </div>
   </div>
 <% else %>
@@ -27,8 +29,9 @@
       <div class="placeholder-profile" />
       <div class="pull-right">
         <h2>Get Started!</h2>
-        <div class="arrow" />
-        <!-- <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %> -->
+        <!-- div class="arrow" /-->
+        <%= link_to "Sign up", signup_path, class: "signup" %>
+        <!--div class="facebook-signup" /-->
       </div
     
   </div>
@@ -36,7 +39,8 @@
   <div class="clear">
   </div>
   <div class="stream">
-  <h3>Posts</h3>
+  <div class="share">Anything you want to share?</div>
+  <h3>RECENT ACTIVITY</h3>
   <ol class="microposts">
   <%= render partial: 'shared/micropost', collection: @microposts %>
   </ol>
